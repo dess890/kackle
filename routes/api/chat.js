@@ -19,7 +19,13 @@ router.post('/sendMessage', function (req, res, next) {
         content: req.body.content,
         isRead: false,
     })
-    
+    .then(newMessage => {
+        res.status(200).json(newMessage)
+    })
 });
+
+router.get('/getMessages/:userId', function (req, res, next) {
+    
+})
 
 module.exports = router;
