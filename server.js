@@ -9,6 +9,7 @@ const db = require('./models')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const twitterAuth = require('./routes/auth/twitter')
+const facebookAuth = require('./routes/auth/facebook')
 
 var app = express();
 
@@ -35,6 +36,7 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.use('/', indexRouter);
 app.use('/', twitterAuth);
+app.use('/', facebookAuth);
 app.use('/users', usersRouter);
 
 module.exports = app;
