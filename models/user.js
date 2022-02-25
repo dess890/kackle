@@ -12,6 +12,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       // User.belongsToMany(models.Chat, {through: models.Conversation})
+      User.hasMany(models.Chat, { foreignKey: "toUserId"})
+      User.hasMany(models.Chat, { foreignKey: "fromUserId"})
     }
   }
   User.init({
@@ -21,7 +23,6 @@ module.exports = (sequelize, DataTypes) => {
     facebookId: DataTypes.STRING,
     twitterAuth: DataTypes.JSONB,
     facebookAuth: DataTypes.JSONB
-
   }, {
     sequelize,
     modelName: 'User',

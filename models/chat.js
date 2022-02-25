@@ -12,6 +12,8 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       // Chat.belongsToMany(models.User, {through: models.Conversation})
+      Chat.belongsTo(models.User, { foreignKey: "toUserId"})
+      Chat.belongsTo(models.User, { foreignKey: "fromUserId"})
     }
   }
   Chat.init({

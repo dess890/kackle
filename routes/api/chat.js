@@ -2,6 +2,7 @@ const express = require('express');
 const db = require('../../models');
 const router = express.Router();
 const bcrypt = require('bcrypt')
+const { Op } = require("sequelize");
 
 // POST /users/register
 router.post('/sendMessage', function (req, res, next) {
@@ -13,6 +14,7 @@ router.post('/sendMessage', function (req, res, next) {
         return
     }
     db.Chat.create({
+        //session id instead req.body
         fromUserId: req.body.fromUserId,
         toUserId: req.body.toUserId,
         content: req.body.content,
@@ -25,16 +27,29 @@ router.post('/sendMessage', function (req, res, next) {
 });
 
 router.get('/getMessages/:userId', async function (req, res, next) {
-    const fromUser = await db.Chat.findAll({
-        where: { fromUserId: req.params.userId },
-    })
-    if(!fromUser){
+    // getting chat with fromUserId column equaling params userId
+    const participant = await db.User.findByPk(req.params.userId)
+    if(!participant){
         //handle missing and success
-        if (!chatLog) {
             res.status(404).json({ error: 'could not find user with that id' });
             return
-        }
     }
+    const loggedInUser = 1
+    const messages = await db.Chat.findAll({
+        where: { 
+            [Op.or]: [
+                {
+                  fromUserId: participant.id,
+                  toUserId: loggedInUser
+                },
+                {
+                  fromUserId: loggedInUser,
+                  toUserId: participant.id
+                }
+              ]
+        },
+    })
+    res.status(200).json(messages)
 })
 
 module.exports = router;
