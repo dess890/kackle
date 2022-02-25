@@ -5,7 +5,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const passport = require('passport')
-
+const db = require('./models')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const twitterAuth = require('./routes/auth/twitter')
@@ -16,22 +16,22 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+const SequelizeStore =
+    require('connect-session-sequelize')(session.Store);
+const store = new SequelizeStore({ db: db.sequelize })
+
 app.use(
     session({
         secret: 'secret', // used to sign the cookie
         resave: false, // update session even w/ no changes
         saveUninitialized: true, // always create a session
-        cookie: {
-            secure: false, // true: only accept https req's
-            maxAge: 2592000000, // time in milliseconds
-            // 2,592,000,000 ms = 30 days
-        }
+        store: store
     })
 );
-
+store.sync()
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.use('/', indexRouter);
 app.use('/', twitterAuth);
