@@ -19,6 +19,9 @@ module.exports = (sequelize, DataTypes) => {
     password: DataTypes.STRING,
     twitterId: DataTypes.STRING,
     facebookId: DataTypes.STRING,
+    twitterAuth: DataTypes.JSONB,
+    facebookAuth: DataTypes.JSONB
+
   }, {
     sequelize,
     modelName: 'User',
