@@ -20,8 +20,7 @@ const isLoggedIn = require('../Middleware/auth')
 
 
 router.get('/', isLoggedIn, (req, res) => {
-  console.log(req.user)
-  res.send(`Hello world ${req.user.displayName}`)
+  res.send(`Hello world ${req.user.username}`)
 })
 router.get('/logout', (req, res) => {
   req.session = null;
