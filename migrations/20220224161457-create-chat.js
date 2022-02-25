@@ -8,16 +8,11 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      fromUserID: {
+      fromUserId: {
         type: Sequelize.INTEGER,
-        references: {
-          model: "Users",
-          key: "id"
-        },
-        onDelete: "SET NULL"
       },
-      toUserID: {
-        type: Sequelize.INTEGER
+      toUserId: {
+        type: Sequelize.INTEGER,
       },
       content: {
         type: Sequelize.TEXT

@@ -11,12 +11,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Chat.belongsTo(models.User)
+      // Chat.belongsToMany(models.User, {through: models.Conversation})
     }
   }
   Chat.init({
-    fromUserId: DataTypes.STRING,
-    toUserId: DataTypes.STRING,
+    fromUserId: DataTypes.INTEGER,
+    toUserId: DataTypes.INTEGER,
     content: DataTypes.TEXT,
     isRead: DataTypes.BOOLEAN
   }, {

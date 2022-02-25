@@ -12,20 +12,29 @@ router.post('/sendMessage', function (req, res, next) {
         })
         return
     }
-
     db.Chat.create({
         fromUserId: req.body.fromUserId,
         toUserId: req.body.toUserId,
         content: req.body.content,
         isRead: false,
     })
-    .then(newMessage => {
-        res.status(200).json(newMessage)
-    })
+        .then(conversation => {
+            res.status(202).json(conversation)
+        })
+
 });
 
-router.get('/getMessages/:userId', function (req, res, next) {
-    
+router.get('/getMessages/:userId', async function (req, res, next) {
+    const fromUser = await db.Chat.findAll({
+        where: { fromUserId: req.params.userId },
+    })
+    if(!fromUser){
+        //handle missing and success
+        if (!chatLog) {
+            res.status(404).json({ error: 'could not find user with that id' });
+            return
+        }
+    }
 })
 
 module.exports = router;

@@ -41,7 +41,7 @@ router.post('/register', function (req, res, next) {
 });
 
 // POST /users/login
-router.post('/login', (req, res) => {
+router.post('/login', (req, res, next) => {
     //check for required fields
     if (!req.body.username || !req.body.password) {
         res.status(400).json({
@@ -76,7 +76,7 @@ router.post('/login', (req, res) => {
 })
 
 // GET /users/logout
-router.get('/logout', (req, res) => {
+router.get('/logout', (req, res, next) => {
     req.session.user = null;
     res.status(200).json({
         success: 'user logged out'
