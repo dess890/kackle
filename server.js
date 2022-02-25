@@ -7,9 +7,15 @@ var logger = require('morgan');
 const passport = require('passport')
 const db = require('./models')
 var indexRouter = require('./routes/index');
+<<<<<<< HEAD
 var usersRouter = require('./routes/api/user');
 // const twitterAuth = require('./routes/auth/twitter')
 const chatRouter = require('./routes/api/chat')
+=======
+var usersRouter = require('./routes/users');
+const twitterAuth = require('./routes/auth/twitter')
+const facebookAuth = require('./routes/auth/facebook')
+>>>>>>> main
 
 var app = express();
 
@@ -35,7 +41,8 @@ app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.use('/', indexRouter);
-// app.use('/', twitterAuth);
+app.use('/', twitterAuth);
+app.use('/', facebookAuth);
 app.use('/users', usersRouter);
 app.use('/chat', chatRouter)
 
