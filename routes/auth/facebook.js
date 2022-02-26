@@ -51,15 +51,10 @@ passport.use(new FacebookStrategy({
             })
     }
 ));
-/* GET users listing. */
-router.get('/login', function (req, res, next) {
-    res.send('testing');
-});
 
-router.get('/auth/facebook', passport.authenticate('facebook'));
-
-router.get('/auth/facebook/callback',
-    passport.authenticate('facebook', { failureRedirect: '/login', failureMessage: true }),
+router.get('/', passport.authenticate('facebook'));
+router.get('/callback',
+    passport.authenticate('facebook', { failureRedirect: '/auth/error', failureMessage: true }),
     function (req, res) {
         res.redirect('/');
     });
