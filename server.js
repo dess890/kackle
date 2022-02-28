@@ -9,6 +9,10 @@ const db = require('./models')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const twitterAuth = require('./routes/auth/twitter')
+const facebookAuth = require('./routes/auth/facebook')
+const localAuth = require('./routes/auth/local')
+const chatRouter = require('./routes/api/chat')
+const authIndex = require('./routes/auth')
 
 var app = express();
 
@@ -34,7 +38,11 @@ app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'client/build')));
 
 app.use('/', indexRouter);
-app.use('/', twitterAuth);
+app.use('/auth', authIndex)
+app.use('/auth/local', localAuth);
+app.use('/auth/twitter', twitterAuth);
+app.use('/auth/facebook', facebookAuth);
 app.use('/users', usersRouter);
+app.use('/chat', chatRouter)
 
 module.exports = app;
