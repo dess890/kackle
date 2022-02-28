@@ -2,12 +2,18 @@ import './App.css';
 import { Routes, Route, Link } from "react-router-dom";
 import Home from './pages/Home';
 import LoginPage from './pages/LoginPage';
-import Chat from './components/Chat';
-import RegisterUser from './pages/RegisterUser';
+import UserProfile from './pages/UserProfile';
+import { GridItem } from '@chakra-ui/react';
+import SideNav from './components/SideNav';
+import img from './img/kacklelogo.png'
 
 export default function App() {
   return (
     <div className="App">
+      <img src={img} style={{ paddingLeft: '45%', marginBottom: '0%' }} />
+      <GridItem rowSpan={2} colSpan={1} style={{}}>
+        <SideNav />
+      </GridItem>
       <SideNav />
       <div className="container">
         <div className="row">
@@ -23,6 +29,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/Login" element={<LoginPage />} />
         <Route path="/Register" element={<RegisterUser />}/>
+        <Route path="/UserProfile" element={<UserProfile />} />
       </Routes>
       {/* <Chat /> */}
     </div>

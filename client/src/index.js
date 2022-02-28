@@ -7,8 +7,8 @@ import reportWebVitals from './reportWebVitals';
 import { ChakraProvider } from '@chakra-ui/react'
 import { Provider } from 'react-redux'
 import store from './redux/store';
-
-
+import theme from './theme'
+import { ColorModeScript } from '@chakra-ui/react'
 
 
 ReactDOM.render(
@@ -16,6 +16,7 @@ ReactDOM.render(
     <Provider store={store}>
       <ChakraProvider>
         <BrowserRouter>
+          <ColorModeScript initialColorMode={theme.config.initialColorMode} />
           <App />
         </BrowserRouter>
       </ChakraProvider>
