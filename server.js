@@ -42,7 +42,7 @@ app.use('/auth', authIndex)
 app.use('/auth/local', localAuth);
 app.use('/auth/twitter', twitterAuth);
 app.use('/auth/facebook', facebookAuth);
-app.use('/users', usersRouter);
-app.use('/chat', chatRouter)
+app.use('/users/api', usersRouter);
+app.use('/chat/api', chatRouter)
 
 module.exports = app;

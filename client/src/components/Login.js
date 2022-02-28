@@ -2,18 +2,20 @@ import { FormControl, FormErrorMessage, FormHelperText, FormLabel, Input } from 
 import React, { useState } from 'react';
 
 export default function ErrorMessageExample() {
-    const [input, setInput] = useState('')
-    const handleInputChange = (e) => setInput(e.target.value)
-    const isError = input === ''
+    const [username, setUsername] = useState('')
+    const [password, setPassword] = useState('')
+
+    const handleUsernameChange = (e) => setUsername(e.target.value)
+    const isError = username === ''
 
     return (
         <FormControl isInvalid={isError}>
-            <FormLabel htmlFor='email'>Email</FormLabel>
+            <FormLabel htmlFor='username'>Username</FormLabel>
             <Input
-                id='email'
+                id='username'
                 type='email'
-                value={input}
-                onChange={handleInputChange}
+                value={username}
+                onChange={handleUsernameChange}
             />
             {!isError ? (
                 <FormHelperText>
