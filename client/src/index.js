@@ -5,15 +5,15 @@ import App from './App';
 import { BrowserRouter } from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
 import { ChakraProvider } from '@chakra-ui/react'
-
-
-
+import theme from './theme'
+import { ColorModeScript } from '@chakra-ui/react'
 
 
 ReactDOM.render(
   <React.StrictMode>
     <ChakraProvider>
       <BrowserRouter>
+        <ColorModeScript initialColorMode={theme.config.initialColorMode} />
         <App />
       </BrowserRouter>
     </ChakraProvider>
