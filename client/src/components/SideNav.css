@@ -1,8 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@700&display=swap");
+
 .logotext {
   font-family: "Work Sans", sans-serif;
   color: rgb(255, 144, 54);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
 #header {
   position: absolute;
   width: 220px;
@@ -11,7 +16,7 @@
   height: 75vh;
   margin: 5vh;
 }
-#header .closemenu {
+/* #header .closemenu {
   color: #000;
   position: absolute;
   right: 0;
@@ -22,17 +27,17 @@
   font-size: 22px;
   top: 55px;
   cursor: pointer;
-}
+} */
 #header .pro-sidebar {
   width: 100%;
   min-width: 100%;
 }
-#header .pro-sidebar.collapsed {
+/* #header .pro-sidebar.collapsed {
   width: 80px;
   min-width: 80px;
-}
+} */
 #header .pro-sidebar-inner {
-  background-color: rgba(196, 195, 194, 0.083);
+  background-color: white;
   box-shadow: 0.5px 0.866px 2px 0px rgba(0, 0, 0, 0.15);
   border-radius: 0.75rem;
   border: 1px dotted rgb(255, 144, 54);
@@ -89,5 +94,3 @@
     overflow: hidden;
   }
 }
-
-

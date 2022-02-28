@@ -1,3 +1,7 @@
+import "./App.css";
+import SideNav from "./components/SideNav";
+import ScrollDiv from "./components/ScrollDiv";
+import StaticDiv from "./components/StaticDiv";
 import logo from './logo.svg';
 import './App.css';
 import { Routes, Route, Link } from "react-router-dom";
@@ -8,13 +12,24 @@ import { GridItem } from '@chakra-ui/react';
 import SideNav from './components/SideNav';
 import img from './img/kacklelogo.png'
 
-function App() {
+export default function App() {
   return (
     <div className="App">
       <img src={img} style={{ paddingLeft: '45%', marginBottom: '0%' }} />
       <GridItem rowSpan={2} colSpan={1} style={{}}>
         <SideNav />
       </GridItem>
+      <SideNav />
+      <div className="container">
+        <div className="row">
+          <ScrollDiv />
+          <StaticDiv />
+        </div>
+        <div className="row2">
+          <ScrollDiv />
+          <StaticDiv />
+        </div>
+      </div>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Login" element={<LoginPage />} />
@@ -23,5 +38,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
