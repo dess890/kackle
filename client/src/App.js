@@ -12,13 +12,14 @@ import ScrollDiv from '../src/components/ScrollDiv'
 import StaticDiv from '../src/components/StaticDiv'
 import Test from './pages/Test';
 
+
 export default function App() {
   return (
     <div className="App">
-      <img src={img} style={{ paddingLeft: '45%', marginBottom: '0%' }} />
-      <GridItem rowSpan={2} colSpan={1} style={{}}>
+      {/* <img src={img} style={{ paddingLeft: '45%', marginBottom: '0%' }} />
+      <GridItem rowSpan={2} colSpan={1} style={{}}> */}
         <SideNav />
-      </GridItem>
+      {/* </GridItem> */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/test" element={<Test />} />

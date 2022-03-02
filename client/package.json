@@ -23,10 +23,11 @@
     "react-router-dom": "^6.2.1",
     "react-scripts": "5.0.0",
     "redux": "^4.1.2",
+    "redux-thunk": "^2.4.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "PORT=3001 react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
