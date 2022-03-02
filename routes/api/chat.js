@@ -29,24 +29,29 @@ router.post('/sendMessage', function (req, res, next) {
 router.get('/getMessages/:userId', async function (req, res, next) {
     // getting chat with fromUserId column equaling params userId
     const participant = await db.User.findByPk(req.params.userId)
-    if(!participant){
+    if (!participant) {
         //handle missing and success
-            res.status(404).json({ error: 'could not find user with that id' });
-            return
+        res.status(404).json({ error: 'could not find user with that id' });
+        return
     }
-    const loggedInUser = 1
+    if (!req.user) {
+        res.status(400).json({ error: 'must be logged in to get messages' })
+        return
+    }
+    const loggedInUser = req.user.id
+    console.log("CURRENT USER: ",loggedInUser)
     const messages = await db.Chat.findAll({
-        where: { 
+        where: {
             [Op.or]: [
                 {
-                  fromUserId: participant.id,
-                  toUserId: loggedInUser
+                    fromUserId: participant.id,
+                    toUserId: loggedInUser
                 },
                 {
-                  fromUserId: loggedInUser,
-                  toUserId: participant.id
+                    fromUserId: loggedInUser,
+                    toUserId: participant.id
                 }
-              ]
+            ]
         },
     })
     res.status(200).json(messages)
