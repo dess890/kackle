@@ -11,16 +11,16 @@ export default function ErrorMessageExample() {
 
     return (
         <FormControl isInvalid={isError}>
-            <FormLabel htmlFor='email'>Email</FormLabel>
+            <FormLabel htmlFor='username'>Username</FormLabel>
             <Input
-                id='email'
-                type='email'
+                id='username'
+                type='text'
                 value={input}
                 onChange={handleInputChange}
             />
             {!isError ? (
                 <FormHelperText>
-                    Enter the email registered with kackle.
+                    Enter the username registered with kackle.
                 </FormHelperText>
             ) : (
                 <FormErrorMessage>Password is required.</FormErrorMessage>

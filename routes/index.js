@@ -18,16 +18,11 @@ var router = express.Router();
 
 const isLoggedIn = require('../Middleware/auth')
 
-
-router.get('/', isLoggedIn, (req, res) => {
-  res.send(`Hello world ${req.user.username}`)
-})
-
-router.get('/logout', (req, res) => {
-  req.session = null;
-  req.logout();
-  res.redirect('/');
-})
+// router.get('/logout', (req, res) => {
+//   req.session = null;
+//   req.logout();
+//   res.redirect('/');
+// })
 
 
 module.exports = router;
