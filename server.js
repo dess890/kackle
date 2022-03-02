@@ -6,10 +6,11 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const passport = require('passport');
 const db = require('./models')
+const twitterApiRouter = require('./routes/api/twitter')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/api/user');
 const twitterAuth = require('./routes/auth/twitter')
-// const facebookAuth = require('./routes/auth/facebook')
+const facebookAuth = require('./routes/auth/facebook')
 const localAuth = require('./routes/auth/local')
 const chatRouter = require('./routes/api/chat')
 const authIndex = require('./routes/auth')
@@ -47,5 +48,6 @@ app.use('/chat', chatRouter);
 app.use('/auth/facebook', facebookAuth);
 app.use('/users/api', usersRouter);
 app.use('/chat/api', chatRouter)
+app.use('/twitter/api', twitterApiRouter)
 
 module.exports = app;
