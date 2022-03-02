@@ -9,6 +9,8 @@ export default function ErrorMessageExample() {
     const handlePasswordChange = (e) => setPassword(e.target.value)
     const isError = input === ''
 
+
+
     return (
         <FormControl isInvalid={isError}>
             <FormLabel htmlFor='email'>Email</FormLabel>
@@ -28,10 +30,15 @@ export default function ErrorMessageExample() {
             <Password value={password}
                 onChange={handlePasswordChange} />
 
-            <Button colorScheme='teal' variant='outline'>
+            <Button colorScheme='orange' variant='outline'>
                 Submit
             </Button>
-
+            <Button as='a' href='http://localhost:3000/auth/facebook' colorScheme='facebook'>
+                Login with Facebook.
+            </Button>
+            <Button as='a' href='http://localhost:3000/auth/twitter' colorScheme='twitter'>
+                Login with twitter.
+            </Button>
         </FormControl>
     )
 }

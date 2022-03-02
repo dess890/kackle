@@ -9,7 +9,6 @@ import Home from './pages/Home';
 import LoginPage from './pages/LoginPage';
 import UserProfile from './pages/UserProfile';
 import { GridItem } from '@chakra-ui/react';
-import SideNav from './components/SideNav';
 import img from './img/kacklelogo.png'
 
 export default function App() {
@@ -19,17 +18,6 @@ export default function App() {
       <GridItem rowSpan={2} colSpan={1} style={{}}>
         <SideNav />
       </GridItem>
-      <SideNav />
-      <div className="container">
-        <div className="row">
-          <ScrollDiv />
-          <StaticDiv />
-        </div>
-        <div className="row2">
-          <ScrollDiv />
-          <StaticDiv />
-        </div>
-      </div>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Login" element={<LoginPage />} />
