@@ -1,6 +1,7 @@
-import { composeWithDevTools} from '@redux-devtools/extension';
-import {applyMiddleware, createStore} from 'redux'
+import { composeWithDevTools } from '@redux-devtools/extension';
+import { applyMiddleware, createStore } from 'redux'
 import rootReducer from './reducers';
+import thunk from "redux-thunk"
 
 // const initialState = JSON.parse(localStorage.getItem('kackle')) || undefined
 const initialState = undefined
@@ -13,7 +14,7 @@ const localStorageMiddleware = storeAPI => next => action => {
     return next(action)
 }
 
-const middlewareEnhancer = applyMiddleware(localStorageMiddleware)
+const middlewareEnhancer = applyMiddleware(localStorageMiddleware, thunk)
 
 const store = createStore(rootReducer, initialState, composeEnhancers(middlewareEnhancer))
 

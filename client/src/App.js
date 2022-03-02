@@ -4,14 +4,21 @@ import Home from './pages/Home';
 import LoginPage from './pages/LoginPage';
 import UserProfile from './pages/UserProfile';
 import { GridItem } from '@chakra-ui/react';
-import SideNav from './components/SideNav';
 import img from './img/kacklelogo.png'
 import RegisterUser from './pages/RegisterUser'
 import ScrollDiv from '../src/components/ScrollDiv'
 import StaticDiv from '../src/components/StaticDiv'
 import Test from './pages/Test';
+import SideNav from './components/SideNav';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchCurrentUser } from './redux/reducers/userReducer';
 
 export default function App() {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(fetchCurrentUser)
+  }, [dispatch])
   return (
     <div className="App">
       <img src={img} style={{ paddingLeft: '45%', marginBottom: '0%' }} />
@@ -22,7 +29,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/test" element={<Test />} />
         <Route path="/Login" element={<LoginPage />} />
-        <Route path="/Register" element={<RegisterUser />}/>
+        <Route path="/Register" element={<RegisterUser />} />
         <Route path="/UserProfile" element={<UserProfile />} />
       </Routes>
       {/* <Chat /> */}

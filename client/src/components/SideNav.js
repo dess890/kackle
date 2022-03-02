@@ -22,10 +22,12 @@ import {
     FiTrendingUp
 } from "react-icons/fi";
 import { BiCog, BiChat } from "react-icons/bi";
+import { CgProfile } from "react-icons/cg"
 
 //import sidebar css from react-pro-sidebar module and our custom css
 import "react-pro-sidebar/dist/css/styles.css";
 import "./SideNav.css";
+import { Link } from "react-router-dom";
 
 const SideNav = () => {
     //create initial menuCollapse state using useState hook
@@ -60,12 +62,17 @@ const SideNav = () => {
                     </SidebarHeader>
                     <SidebarContent>
                         <Menu iconShape="square">
-                            <MenuItem active={true} icon={<FiHome />}>
-                                Home
-                            </MenuItem>
+                            <Link to="/">
+                                <MenuItem active={true} icon={<FiHome />}>
+                                    Home
+                                </MenuItem>
+                            </Link>
                             <MenuItem icon={<FiTrendingUp />}>Trending</MenuItem>
                             <MenuItem icon={<FaRegHeart />}>Liked</MenuItem>
                             <MenuItem icon={<BiChat />}>Chat</MenuItem>
+                            <Link to='/UserProfile'>
+                                <MenuItem icon={<CgProfile />}>Profile</MenuItem>
+                            </Link>
                             <MenuItem icon={<BiCog />}>Settings</MenuItem>
                         </Menu>
                     </SidebarContent>

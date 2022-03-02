@@ -7,7 +7,7 @@ import SideNav from './SideNav'
 
 function GridForProfile() {
     return (
-        <div style={{ marginBottom: '5%' }}>
+        <div>
             <Grid
                 paddingTop='5%'
                 h='900px'
