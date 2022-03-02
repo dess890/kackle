@@ -13,6 +13,7 @@ export default function PasswordInput(props) {
                 type={show ? 'text' : 'password'}
                 placeholder='Enter password'
                 value={props.value}
+                name={props.name}
                 onChange={props.onChange}
             />
             <InputRightElement width='4.5rem'>

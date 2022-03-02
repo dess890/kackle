@@ -64,7 +64,7 @@ router.post('/register', function (req, res, next) {
 
 // POST local user login
 router.post('/login', passport.authenticate('local', {
-    successReturnToOrRedirect: '/',
+    successReturnToOrRedirect: '/users/api/current',
     failureRedirect: '/auth/error',
     failureMessage: true
 }));
