@@ -14,13 +14,13 @@ export default function ErrorMessageExample() {
             <FormLabel htmlFor='username'>Username</FormLabel>
             <Input
                 id='username'
-                type='email'
-                value={username}
-                onChange={handleUsernameChange}
+                type='text'
+                value={input}
+                onChange={handleInputChange}
             />
             {!isError ? (
                 <FormHelperText>
-                    Enter the email registered with kackle.
+                    Enter the username registered with kackle.
                 </FormHelperText>
             ) : (
                 <FormErrorMessage>Password is required.</FormErrorMessage>

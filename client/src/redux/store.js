@@ -8,7 +8,7 @@ const initialState = undefined
 const composeEnhancers = composeWithDevTools({})
 
 const localStorageMiddleware = storeAPI => next => action => {
-    const state = storeAPI.getState()
+    // const state = storeAPI.getState()
     // localStorage.setItem('kackle', JSON.stringify(state))
     return next(action)
 }

@@ -4,20 +4,15 @@ function Chat() {
     const [chat, setChat] = useState({})
     const [user, setUser] = useState({})
 
-    const loggedInUser = 1
     useEffect(() => {
         // fetch(`/auth/logout`, {
         //     method: 'POST'
         // })
         fetch(`/auth/local/login`, {
             method: 'POST',
-            mode: 'cors',
-            cache: 'no-cache',
-            credentials: 'same-origin',
             headers: {
                 'Content-Type': 'application/json'
             },
-            referrerPolicy: 'no-referrer',
             body: JSON.stringify({
                 username: 'forlaenu',
                 password: 'password'
