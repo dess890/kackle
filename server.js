@@ -4,10 +4,10 @@ require('dotenv').config()
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const passport = require('passport')
+const passport = require('passport');
 const db = require('./models')
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var usersRouter = require('./routes/api/user');
 const twitterAuth = require('./routes/auth/twitter')
 // const facebookAuth = require('./routes/auth/facebook')
 const localAuth = require('./routes/auth/local')
@@ -43,6 +43,9 @@ app.use('/auth/local', localAuth);
 app.use('/auth/twitter', twitterAuth);
 // app.use('/auth/facebook', facebookAuth);
 app.use('/users', usersRouter);
-app.use('/chat', chatRouter)
+app.use('/chat', chatRouter);
+app.use('/auth/facebook', facebookAuth);
+app.use('/users/api', usersRouter);
+app.use('/chat/api', chatRouter)
 
 module.exports = app;
