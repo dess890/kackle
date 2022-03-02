@@ -9,7 +9,7 @@ const db = require('./models')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 const twitterAuth = require('./routes/auth/twitter')
-const facebookAuth = require('./routes/auth/facebook')
+// const facebookAuth = require('./routes/auth/facebook')
 const localAuth = require('./routes/auth/local')
 const chatRouter = require('./routes/api/chat')
 const authIndex = require('./routes/auth')
@@ -41,7 +41,7 @@ app.use('/', indexRouter);
 app.use('/auth', authIndex)
 app.use('/auth/local', localAuth);
 app.use('/auth/twitter', twitterAuth);
-app.use('/auth/facebook', facebookAuth);
+// app.use('/auth/facebook', facebookAuth);
 app.use('/users', usersRouter);
 app.use('/chat', chatRouter)
 
