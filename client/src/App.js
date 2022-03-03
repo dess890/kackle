@@ -10,6 +10,7 @@ import Test from './pages/Test';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchCurrentUser } from './redux/reducers/userReducer';
+import TwitterFeed from "./pages/TwitterFeed";
 
 export default function App() {
   const dispatch = useDispatch()
@@ -18,19 +19,19 @@ export default function App() {
   }, [dispatch])
   return (
     <div className="App">
-      <img src={img} style={{ paddingLeft: '45%', marginBottom: '0%' }} />
         <div>
           <SideNav />
         </div>
-        <div style={{marginLeft: "300px"}}>
+        {/* <div style={{marginLeft: "300px"}}> */}
           <Routes >
             <Route path="/" element={<Home />} />
             <Route path="/test" element={<Test />} />
             <Route path="/Login" element={<LoginPage />} />
             <Route path="/Register" element={<RegisterUser />} />
             <Route path="/UserProfile" element={<UserProfile />} />
+            <Route path="/trending" element={<TwitterFeed />} />
           </Routes>
-        </div>
+        {/* </div> */}
     </div>
   );
 }

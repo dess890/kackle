@@ -27,7 +27,7 @@ import "react-pro-sidebar/dist/css/styles.css";
 import "./SideNav.css";
 import { Link } from "react-router-dom";
 import { useSelector } from 'react-redux'
-    
+
 
 const SideNav = () => {
     //getting a user if it exists
