@@ -26,8 +26,18 @@ import { CgProfile } from "react-icons/cg"
 import "react-pro-sidebar/dist/css/styles.css";
 import "./SideNav.css";
 import { Link } from "react-router-dom";
+import { useSelector } from 'react-redux'
+    
 
 const SideNav = () => {
+    //getting a user if it exists
+    const user = useSelector(state => state.user.user)
+    const userLogout = () => {
+        fetch('/auth/logout', {
+            method: 'POST'
+        })
+    }
+
     //create initial menuCollapse state using useState hook
     const [menuCollapse, setMenuCollapse] = useState(false);
 
@@ -37,9 +47,7 @@ const SideNav = () => {
         menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
     };
 
-    // const logo = "K";
-
-
+    if(user){
     return (
         <>
             <div id="header">
@@ -59,29 +67,27 @@ const SideNav = () => {
                     </SidebarHeader>
                     <SidebarContent>
                         <Menu iconShape="square">
-                            <Link to="/">
-                                <MenuItem active={true} icon={<FiHome />}>
-                                    Home
-                                </MenuItem>
-                            </Link>
+                            <MenuItem active={true} icon={<FiHome />}><Link to="/"></Link>Home</MenuItem>
                             <MenuItem icon={<FiTrendingUp />}>Trending</MenuItem>
                             <MenuItem icon={<FaRegHeart />}>Liked</MenuItem>
                             <MenuItem icon={<BiChat />}>Chat</MenuItem>
-                            <Link to='/UserProfile'>
-                                <MenuItem icon={<CgProfile />}>Profile</MenuItem>
-                            </Link>
+                            <MenuItem icon={<CgProfile />}><Link to='/UserProfile'></Link>Profile</MenuItem>
                             <MenuItem icon={<BiCog />}>Settings</MenuItem>
                         </Menu>
                     </SidebarContent>
                     <SidebarFooter>
                         <Menu iconShape="square">
-                            <MenuItem icon={<FiLogOut />}>Logout</MenuItem>
+                            <MenuItem icon={<FiLogOut />} onClick={userLogout}><Link to='/Landing'></Link>Logout</MenuItem>
                         </Menu>
                     </SidebarFooter>
                 </ProSidebar>
             </div>
         </>
     );
+    }
+    else {
+        return <></>
+    }
 };
 
 export default SideNav;
