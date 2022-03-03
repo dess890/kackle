@@ -5,9 +5,29 @@ div.scroll {
   height: 50vh;
   width: 37vw;
   font-size: 1.5rem;
-  border: 1px dotted rgb(255, 144, 54);
+  border: 3px dotted rgb(255, 144, 54);
   border-radius: 0.75rem;
   overflow-x: hidden;
   overflow-y: auto;
   text-align: justify;
+  scrollbar-color: orange;
+}
+div.scroll::-webkit-scrollbar{
+  width: .5rem;
+}
+
+div.scroll::-webkit-scrollbar-track {
+  /* box-shadow: inset 0 0 5px grey;  */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(255, 144, 54);
+  border-radius: 10px;
+  /* border: 1px dotted rgb(255, 144, 54); */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 175, 110);
+
 }

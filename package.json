@@ -23,6 +23,7 @@
     "passport-twitter": "^1.0.4",
     "passport-twitter-oauth2": "^2.1.1",
     "pg": "^8.7.3",
-    "sequelize-cli": "^6.4.1"
+    "sequelize-cli": "^6.4.1",
+    "twitter-api-client": "^1.5.2"
   }
 }
