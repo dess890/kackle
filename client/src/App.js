@@ -13,6 +13,7 @@ import SideNav from './components/SideNav';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchCurrentUser } from './redux/reducers/userReducer';
+import Socials from './pages/Socials';
 
 export default function App() {
   const dispatch = useDispatch()
@@ -31,6 +32,7 @@ export default function App() {
         <Route path="/Login" element={<LoginPage />} />
         <Route path="/Register" element={<RegisterUser />} />
         <Route path="/UserProfile" element={<UserProfile />} />
+        <Route path="/Socials" element={<Socials />} />
       </Routes>
       {/* <Chat /> */}
     </div>
