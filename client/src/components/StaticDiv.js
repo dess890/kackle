@@ -1,5 +1,7 @@
 import flag from './flag.png'
 import { Box, Stack, Text, HStack, VStack, StackDivider } from '@chakra-ui/react'
+import { Routes, Route, Link } from "react-router-dom";
+
 
 // Vertical stacks and Horizontal stacks to neatly fit content from social media
 export default function StaticDiv1() {
@@ -18,9 +20,17 @@ export default function StaticDiv1() {
 
         <HStack h='40px' >
         <Text fontWeight='bold' fontSize='lg'>Biden gives first SOTU</Text>
+        
         </HStack>
 
       </VStack>
+      {/* <Routes>
+        <Route path="/trending" element={<Home />} />
+      </Routes> */}
     </div>
   );
 }
+
+
+
+

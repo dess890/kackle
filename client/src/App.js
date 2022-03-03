@@ -5,12 +5,10 @@ import Home from './pages/Home';
 import LoginPage from './pages/LoginPage';
 import UserProfile from './pages/UserProfile';
 import RegisterUser from './pages/RegisterUser'
-
 import Test from './pages/Test';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchCurrentUser } from './redux/reducers/userReducer';
-
 
 export default function App() {
   const dispatch = useDispatch()

@@ -11,9 +11,11 @@ passport.use(new TwitterStrategy({
     callbackURL:  (process.env.APP_URL || 'http://localhost:3000') + "/auth/twitter/callback",
 },
     function (accessToken, refreshToken, profile, done) {
+        console.log(profile)
         db.User.findOrCreate({
             where: {
                 twitterId: profile.id
+                // id: user.id
             },
             defaults: {
                 twitterId: profile.id,
