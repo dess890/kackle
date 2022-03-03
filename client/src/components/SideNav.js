@@ -17,8 +17,6 @@ import { FaRegHeart } from "react-icons/fa";
 import {
     FiHome,
     FiLogOut,
-    FiArrowLeftCircle,
-    FiArrowRightCircle,
     FiTrendingUp
 } from "react-icons/fi";
 import { BiCog, BiChat } from "react-icons/bi";
