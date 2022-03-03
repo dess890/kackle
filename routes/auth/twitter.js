@@ -8,40 +8,27 @@ const TwitterStrategy = require('passport-twitter').Strategy;
 passport.use(new TwitterStrategy({
     consumerKey: process.env.TWITTER_CONSUMER_KEY,
     consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
-    callbackURL:  (process.env.APP_URL || 'http://localhost:3000') + "/auth/twitter/callback",
+    passReqToCallback: true,
+    callbackURL: (process.env.APP_URL || 'http://localhost:3000') + "/auth/twitter/callback",
 },
-    function (accessToken, refreshToken, profile, done) {
-        db.User.findOrCreate({
-            where: {
-                twitterId: profile.id
-            },
-            defaults: {
-                twitterId: profile.id,
-                username: profile.username,
-                twitterAuth: {
-                    accessToken,
-                    refreshToken,
-                    profile
-                }
-            }
-        })
-            .then(async ([user, created]) => {
-                if (!created) {
-                        user.twitterAuth = {
-                            accessToken,
-                            refreshToken,
-                            profile
-                        }
-                        await user.save()
-                }
-
-                return done(null, user);
-            })
-    }
-));
+    async function (req, accessToken, refreshToken, profile, done) {
+        // check user exists
+        if (!req.user) {
+            return done(new Error("Please log in"));
+        }
+        req.user.twitterId = profile.id
+        req.user.twitterAuth = {
+            accessToken,
+            refreshToken,
+            profile
+        }
+        await req.user.save()
+        return done(null, req.user);
+    })
+);
 
 
-router.get('/', passport.authenticate('twitter'));
+router.get('/', passport.authenticate('twitter'))
 router.get('/callback', passport.authenticate('twitter', { failureRedirect: '/auth/error' }),
     function (req, res) {
         res.redirect('/');
