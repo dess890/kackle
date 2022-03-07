@@ -1,5 +1,6 @@
 .App {
   overflow-x: hidden;
+  overflow-y: visible;
 }
 
 .row {
@@ -38,6 +39,7 @@
   border-radius: 0.75rem;
   font-family: Tahoma, sans-serif;
   font-size: 1.2rem;
+  box-shadow: 0px 2px 12px -7px rgb(255, 144, 54)
 }
 
 .flag {
@@ -45,4 +47,11 @@
   height: 2rem;
   padding: 1px;
   margin-right: 1rem
+}
+
+.map {
+  width: 8rem;
+  height: 5rem;
+  padding: 5px;
+  border-radius: 25px;
 }
