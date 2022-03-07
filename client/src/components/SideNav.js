@@ -26,7 +26,8 @@ import { CgProfile } from "react-icons/cg"
 import "react-pro-sidebar/dist/css/styles.css";
 import "./SideNav.css";
 import { Link } from "react-router-dom";
-    
+import { useSelector } from 'react-redux'
+
 
 const SideNav = () => {
     //logout function for logout button on bottom of
@@ -67,7 +68,7 @@ const SideNav = () => {
                             <MenuItem active={true} icon={<FiHome />}><Link to="/"></Link>Home</MenuItem>
                             <MenuItem icon={<FiTrendingUp />}>Trending</MenuItem>
                             <MenuItem icon={<FaRegHeart />}>Liked</MenuItem>
-                            <MenuItem icon={<BiChat />}>Chat</MenuItem>
+                            <MenuItem icon={<BiChat />}><Link to='/Socials'></Link>Socials</MenuItem>
                             <MenuItem icon={<CgProfile />}><Link to='/UserProfile'></Link>Profile</MenuItem>
                             <MenuItem icon={<BiCog />}>Settings</MenuItem>
                         </Menu>
