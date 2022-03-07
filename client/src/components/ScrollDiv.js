@@ -1,13 +1,11 @@
 import "./ScrollDiv.css";
-import { BsFacebook } from "react-icons/bs";
+import { BsTwitter } from "react-icons/bs";
 import TwitterFeed from "../pages/TwitterFeed";
 
 export default function ScrollDiv() {
   return (
-    <div class="scroll">
-      <h1>
-        <BsFacebook />
-      </h1>
+    <div className="scroll">
+        <BsTwitter />
       <TwitterFeed />
       {/* Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim

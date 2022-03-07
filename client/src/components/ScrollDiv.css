@@ -1,3 +1,4 @@
+
 div.scroll {
   display: flex;
   flex-wrap: wrap;
@@ -7,27 +8,28 @@ div.scroll {
   font-size: 1.5rem;
   border: 3px dotted rgb(255, 144, 54);
   border-radius: 0.75rem;
-  overflow-x: hidden;
-  overflow-y: auto;
   text-align: justify;
   scrollbar-color: orange;
-}
-div.scroll::-webkit-scrollbar{
-  width: .5rem;
+  resize: both;
+  overflow-x: hidden;
 }
 
-div.scroll::-webkit-scrollbar-track {
-  /* box-shadow: inset 0 0 5px grey;  */
-  border-radius: 10px;
+div.scroll::-webkit-scrollbar{
+  width: .25rem;
 }
+
 
 ::-webkit-scrollbar-thumb {
   background-color: rgb(255, 144, 54);
   border-radius: 10px;
-  /* border: 1px dotted rgb(255, 144, 54); */
+  
 }
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 175, 110);
 
+}
+
+.aTweet:hover {
+  background-color: rgba(255, 175, 110, 0.08)
 }

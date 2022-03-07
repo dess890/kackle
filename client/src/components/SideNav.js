@@ -1,6 +1,6 @@
 //import useState hook to create menu collapse state
 import React, { useState } from "react";
-import img from './kackle.png'
+import img from '../img/kackle.png'
 
 //import react pro sidebar components
 import {
@@ -58,7 +58,7 @@ const SideNav = () => {
                     <SidebarHeader>
                         <div className="logotext">
                             {/* small and big change using menucollapse state */}
-                            <p><img src={img} /> </p>
+                            <img src={img} /> 
                         </div>
                         <div className="closemenu" onClick={menuIconClick}>
                             {/* changing menu collapse icon on click */}
@@ -67,7 +67,7 @@ const SideNav = () => {
                     </SidebarHeader>
                     <SidebarContent>
                         <Menu iconShape="square">
-                            <MenuItem active={true} icon={<FiHome />}><Link to="/"></Link>Home</MenuItem>
+                            <MenuItem icon={<FiHome />}><Link to="/"></Link>Home</MenuItem>
                             <MenuItem icon={<FiTrendingUp />}>Trending</MenuItem>
                             <MenuItem icon={<FaRegHeart />}>Liked</MenuItem>
                             <MenuItem icon={<BiChat />}>Chat</MenuItem>

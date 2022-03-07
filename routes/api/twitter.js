@@ -1,18 +1,13 @@
 // Default Template Code >>
 
 const isLoggedIn = require('../../Middleware/auth')
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
 const { TwitterClient } = require('twitter-api-client')
 
 
 
-//endpoint for user's home timeline, includes posts from ppl they follow
-// GET statuses/home_timeline
-// TwitterClient.tweets.statusesHomeTimeline(parameters)
-
-// get retweets from id, only when logged in
 router.get('/trending', isLoggedIn, async (req, res) => 
 
 {const twitterClient = new TwitterClient({
@@ -23,22 +18,32 @@ router.get('/trending', isLoggedIn, async (req, res) =>
 })
 
 
-// const data = await twitterClient.tweets.statusesRetweetsById({ id: '1499115291518898176', count: 25 });
+// const data = await twitterClient.tweets.statusesRetweetsById({ id: '1499115291518898176', count: 2 });
 //     console.log(data)
 //     res.json(data)
-// })
+
+
 try {
-    const data = await twitterClient.tweets.statusesHomeTimeline();
-    console.log(data)
+    const data = await twitterClient.tweets.statusesHomeTimeline( {count: 5, tweet_mode: 'extended',  } );
+    if (data.truncated = true) {
+        data.truncated = false
+    }
+    
+    
+    for (i=0; i < data.length; i++) {
+        if (data[i].in_reply_to_status_id) {
+            const original = await twitterClient.tweets.statusesShow( {id: data[i].in_reply_to_status_id_str} );
+            data[i].original = original
+            console.log(original)
+        }
+    }
+
+    // console.log(data)
     res.json(data)
 } catch (error) {
     console.error(error)
     res.status(500).json({error: "fail"})
 }
-
-    
-    
-// accessToken: req.user.twitterAuth.accessToken,
-// accessTokenSecret: req.user.twitterAuth.refreshToken
 })
+
 module.exports = router;
