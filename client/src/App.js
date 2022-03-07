@@ -7,7 +7,7 @@ import UserProfile from './pages/UserProfile';
 import img from './img/kacklelogo.png'
 import RegisterUser from './pages/RegisterUser'
 import Test from './pages/Test';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchCurrentUser } from './redux/reducers/userReducer';
 
@@ -16,11 +16,12 @@ export default function App() {
   useEffect(() => {
     dispatch(fetchCurrentUser)
   }, [dispatch])
+  const user = useSelector(state => state.user.user)
   return (
     <div className="App">
       <img src={img} style={{ paddingLeft: '45%', marginBottom: '0%' }} />
         <div>
-          <SideNav />
+          {user && <SideNav />}
         </div>
         <div style={{marginLeft: "300px"}}>
           <Routes >

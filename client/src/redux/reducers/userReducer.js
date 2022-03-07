@@ -1,3 +1,5 @@
+import { fetchMessages } from "./chatReducer"
+
 const defaultState = {
     user: null
 }
@@ -16,6 +18,7 @@ export function fetchCurrentUser(dispatch, getState) {
         .then(res => res.json())
         .then(data => {
             dispatch(setCurrentUser(data))
+            dispatch(fetchMessages)
         })
 }
 

@@ -26,12 +26,10 @@ import { CgProfile } from "react-icons/cg"
 import "react-pro-sidebar/dist/css/styles.css";
 import "./SideNav.css";
 import { Link } from "react-router-dom";
-import { useSelector } from 'react-redux'
     
 
 const SideNav = () => {
-    //getting a user if it exists
-    const user = useSelector(state => state.user.user)
+    //logout function for logout button on bottom of
     const userLogout = () => {
         fetch('/auth/logout', {
             method: 'POST'
@@ -47,7 +45,6 @@ const SideNav = () => {
         menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
     };
 
-    if(user){
     return (
         <>
             <div id="header">
@@ -84,10 +81,6 @@ const SideNav = () => {
             </div>
         </>
     );
-    }
-    else {
-        return <></>
-    }
 };
 
 export default SideNav;
