@@ -1,0 +1,24 @@
+.cs-search {
+    background-color: #ffd9bb;
+}
+
+.cs-search__input {
+    background-color: #ffd9bb ;
+}
+
+.cs-search__search-icon {
+ background-color: #ffd9bb  ;
+}
+
+.cs-message--incoming .cs-message__content {
+    background-color: #ffd9bb; 
+}
+
+.cs-message__content {
+    background-color: #ffd9bb; 
+}
+
+.cs-message.cs-message--incoming.cs-message--first .cs-message__content {
+    background-color: #ffd9bb; 
+}
+
