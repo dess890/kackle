@@ -7,6 +7,7 @@ var logger = require('morgan');
 const passport = require('passport');
 const db = require('./models')
 const twitterApiRouter = require('./routes/api/twitter')
+const facebookApiRouter = require('./routes/api/facebook')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/api/user');
 const twitterAuth = require('./routes/auth/twitter')
@@ -49,5 +50,6 @@ app.use('/auth/facebook', facebookAuth);
 app.use('/users/api', usersRouter);
 app.use('/chat/api', chatRouter)
 app.use('/twitter/api', twitterApiRouter)
+app.use('/facebook/api', facebookApiRouter)
 
 module.exports = app;

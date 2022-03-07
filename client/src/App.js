@@ -11,6 +11,7 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchCurrentUser } from './redux/reducers/userReducer';
 import TwitterFeed from "./pages/TwitterFeed";
+import Socials from './pages/Socials';
 
 export default function App() {
   const dispatch = useDispatch()
@@ -19,19 +20,21 @@ export default function App() {
   }, [dispatch])
   return (
     <div className="App">
-        <div>
-          <SideNav />
-        </div>
-        {/* <div style={{marginLeft: "300px"}}> */}
-          <Routes >
-            <Route path="/" element={<Home />} />
-            <Route path="/test" element={<Test />} />
-            <Route path="/Login" element={<LoginPage />} />
-            <Route path="/Register" element={<RegisterUser />} />
-            <Route path="/UserProfile" element={<UserProfile />} />
-            <Route path="/trending" element={<TwitterFeed />} />
-          </Routes>
-        {/* </div> */}
+      <img src={img} style={{ paddingLeft: '45%', marginBottom: '0%' }} />
+      {/* <Chat /> */}
+      <div>
+        <SideNav />
+      </div>
+      <div>
+        <Routes >
+          <Route path="/" element={<Home />} />
+          <Route path="/test" element={<Test />} />
+          <Route path="/Login" element={<LoginPage />} />
+          <Route path="/Register" element={<RegisterUser />} />
+          <Route path="/UserProfile" element={<UserProfile />} />
+          <Route path="/Socials" element={<Socials />} />
+        </Routes>
+      </div>
     </div>
   );
 }
