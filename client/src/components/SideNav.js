@@ -27,7 +27,7 @@ import "react-pro-sidebar/dist/css/styles.css";
 import "./SideNav.css";
 import { Link } from "react-router-dom";
 import { useSelector } from 'react-redux'
-    
+
 
 const SideNav = () => {
     //getting a user if it exists
@@ -47,7 +47,6 @@ const SideNav = () => {
         menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
     };
 
-    if(user){
     return (
         <>
             <div id="header">
@@ -70,7 +69,7 @@ const SideNav = () => {
                             <MenuItem active={true} icon={<FiHome />}><Link to="/"></Link>Home</MenuItem>
                             <MenuItem icon={<FiTrendingUp />}>Trending</MenuItem>
                             <MenuItem icon={<FaRegHeart />}>Liked</MenuItem>
-                            <MenuItem icon={<BiChat />}>Chat</MenuItem>
+                            <MenuItem icon={<BiChat />}><Link to='/Socials'></Link>Socials</MenuItem>
                             <MenuItem icon={<CgProfile />}><Link to='/UserProfile'></Link>Profile</MenuItem>
                             <MenuItem icon={<BiCog />}>Settings</MenuItem>
                         </Menu>
@@ -84,10 +83,6 @@ const SideNav = () => {
             </div>
         </>
     );
-    }
-    else {
-        return <></>
-    }
 };
 
 export default SideNav;

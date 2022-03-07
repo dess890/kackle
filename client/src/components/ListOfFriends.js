@@ -7,7 +7,7 @@ import { Heading } from '@chakra-ui/react'
 function ListOfFriends() {
     return (
         <div>
-            <Heading>Friends' List</Heading>
+            <Heading style={{ width: '300px' }}>Friends' List</Heading>
             <ul id='friend-list'>
                 <li class='friend'>
                     <img src={img} />

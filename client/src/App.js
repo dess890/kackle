@@ -24,7 +24,7 @@ export default function App() {
       <div>
         <SideNav />
       </div>
-      <div style={{ marginLeft: "300px" }}>
+      <div>
         <Routes >
           <Route path="/" element={<Home />} />
           <Route path="/test" element={<Test />} />
