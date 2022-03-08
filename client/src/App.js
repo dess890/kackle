@@ -10,6 +10,7 @@ import Test from './pages/Test';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchCurrentUser } from './redux/reducers/userReducer';
+import TwitterFeed from "./pages/TwitterFeed";
 import Socials from './pages/Socials';
 
 export default function App() {
