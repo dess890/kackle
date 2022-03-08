@@ -13,12 +13,25 @@ export function setCurrentUser(userObject) {
     }
 }
 
+export function setUserLoggedOut(dispatch, getState) {
+    dispatch(setCurrentUser(null))
+}
+
 export function fetchCurrentUser(dispatch, getState) {
     fetch('/users/api/current')
-        .then(res => res.json())
+        .then(res => {
+            res.json()
+        })
         .then(data => {
+            if(data === undefined){
+                dispatch(setCurrentUser(null))
+                return
+            }
             dispatch(setCurrentUser(data))
             dispatch(fetchMessages)
+        })
+        .catch((err)=> {
+            console.log("error:", err)
         })
 }
 

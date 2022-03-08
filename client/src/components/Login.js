@@ -39,12 +39,11 @@ export default function ErrorMessageExample() {
                 if (data.error) {
                     setError(data.error)
                 } else {
-                    console.log(data)
                     setInput('')
                     setPassword('')
                     setError('')
                     dispatch(setCurrentUser(data))
-                    navigate('/')
+                    navigate('/home')
                 }
             })
     }

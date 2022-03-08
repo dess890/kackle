@@ -9,12 +9,11 @@ const { TwitterClient } = require('twitter-api-client')
 
 
 router.get('/trending', isLoggedIn, async (req, res) => 
-
 {const twitterClient = new TwitterClient({
     apiKey: process.env.TWITTER_CONSUMER_KEY,
     apiSecret: process.env.TWITTER_CONSUMER_SECRET,
-    accessToken: process.env.TWITTER_ACCESS_TOKEN,
-    accessTokenSecret: process.env.TWITTER_ACCESS_TOKEN_SECRET
+    accessToken: req.user.twitterAuth.accessToken || process.env.TWITTER_ACCESS_TOKEN,
+    accessTokenSecret: req.user.twitterAuth.refreshToken || process.env.TWITTER_ACCESS_TOKEN_SECRET
 })
 
 
@@ -34,7 +33,7 @@ try {
         if (data[i].in_reply_to_status_id) {
             const original = await twitterClient.tweets.statusesShow( {id: data[i].in_reply_to_status_id_str} );
             data[i].original = original
-            console.log(original)
+            // console.log(original)
         }
     }
 

@@ -192,14 +192,14 @@ function TwitterFeed() {
                 const shortenFavorites = (tweet.favorite_count / 1000).toFixed(1) + 'K'
 
                 return (
-                    <div key={tweet}>
-                        <HStack key={tweet.user.id} >
+                    <div key={tweet.id}>
+                        <HStack  >
                             <img src={tweet.user.profile_image_url} alt='profile pic' style={{ borderRadius: '50%' }} />
                             <h3>{tweet.user.name}</h3>
                             {tweet.verified = true ? <AiFillCheckCircle color='orange' /> : ""}
                             <Text style={{ opacity: '50%' }}>@{tweet.user.screen_name}</Text>
                         </HStack>
-                        <VStack key={tweet.id} >
+                        <VStack>
 
                             {tweet.original ?
 
@@ -215,7 +215,7 @@ function TwitterFeed() {
                             {/* <Text fontSize='sm'>{tweet.original.text}</Text> */}
 
                         </VStack>
-                        <HStack key={tweet.retweet_count} padding='4'>
+                        <HStack padding='4'>
                             <AiOutlineRetweet className='retweet' />
                             <Text fontSize='xs' >{tweet.retweet_count > 1000 ? shortenRetweets : tweet.retweet_count}</Text>
                             <AiOutlineHeart className='retweets' />
