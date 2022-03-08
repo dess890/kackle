@@ -7,6 +7,9 @@
   align-items: center;
   justify-content: center;
 }
+img {
+  padding: 10px;
+}
 
 #header {
   position: absolute;
@@ -68,7 +71,7 @@
   background-color: rgba(255, 175, 110, 0.48);
   /* opacity: 80%; */
   color: #000;
-  border-radius: 3px;
+  border-radius: 5px;
 }
 #header
   .pro-sidebar-inner
