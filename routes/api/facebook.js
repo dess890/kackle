@@ -18,4 +18,12 @@ router.get("/feed", isLoggedIn, function (req, res) {
     })
 })
 
+router.get('/picture', isLoggedIn, function (req, res) {
+    FB.setAccessToken(req.user.facebookAuth.accessToken)
+    FB.api('/me/picture', { fields: 'url', redirect: false }, (data) => {
+        console.log(data)
+        res.json(data)
+    })
+})
+
 module.exports = router;
