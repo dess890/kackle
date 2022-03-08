@@ -1,8 +1,9 @@
 import React from 'react'
 import ScrollDiv from "../components/ScrollDiv";
 import StaticDiv from "../components/StaticDiv";
+import ScrollDivTwo from '../components/ScrollDivTwo';
 import { ButtonGroup, Container, IconButton, HStack, Stack, Text } from '@chakra-ui/react'
-import { FaGithub,  FaTwitter } from 'react-icons/fa'
+import { FaGithub, FaTwitter } from 'react-icons/fa'
 
 
 function Home() {
@@ -14,7 +15,7 @@ function Home() {
           <StaticDiv />
         </div>
         <div className="row2">
-          {/* <ScrollDiv /> */}
+          <ScrollDivTwo />
           <StaticDiv />
         </div>
       </div>
@@ -24,11 +25,11 @@ function Home() {
         <HStack spacing={{ md: '5' }}>
           <Stack direction="row" align="center">
             <ButtonGroup variant="ghost">
-              <IconButton 
-              as="a" 
-              href="https://github.com/dess890/kackle" 
-              aria-label="GitHub" 
-              icon={<FaGithub fontSize="1.25rem" color='orange' />} />
+              <IconButton
+                as="a"
+                href="https://github.com/dess890/kackle"
+                aria-label="GitHub"
+                icon={<FaGithub fontSize="1.25rem" color='orange' />} />
               <IconButton
                 as="a"
                 href="#"

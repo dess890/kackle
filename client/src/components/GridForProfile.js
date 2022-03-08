@@ -1,7 +1,6 @@
 import React from 'react'
 import { Grid, GridItem } from '@chakra-ui/react'
 import { Container } from '@chakra-ui/react'
-import Cards from './Cards'
 import SideNav from './SideNav'
 
 

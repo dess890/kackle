@@ -26,7 +26,12 @@ passport.use(new FacebookStrategy({
     }
 ));
 
-router.get('/', passport.authenticate('facebook'));
+router.get('/', passport.authenticate('facebook', {
+    authType: 'reauthenticate',
+    scope: [
+        'user_posts', 'user_photos', 'public_profile'
+    ]
+}));
 router.get('/callback',
     passport.authenticate('facebook', { failureRedirect: '/auth/error', failureMessage: true }),
     function (req, res) {
