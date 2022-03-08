@@ -1,49 +1,29 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react';
+import io from 'socket.io-client'
+import Messages from './Messages';
+import MessageInput from './MessageInput';
 
-function Chat() {
-    const [chat, setChat] = useState({})
-    const [user, setUser] = useState({})
+
+export default function Chat() {
+    const [socket, setSocket] = useState(null);
 
     useEffect(() => {
-        // fetch(`/auth/logout`, {
-        //     method: 'POST'
-        // })
-        fetch(`/auth/local/login`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                username: 'forlaenu',
-                password: 'password'
-            })
-        })
-            .then(res => {
-                setUser(res)
-            })
+        const newSocket = io(`http://${window.location.hostname}:3000`);
+        setSocket(newSocket);
+        return () => newSocket.close();
+    }, [setSocket]);
 
-        fetch(`/chat/api/getMessages/2`)
-            .then(res => res.json())
-            .then(data => {
-                setChat(data)
-            })
-    }, [])
-
-    if (Object.keys(chat).length) {
-        //if true
-        return (
-            <div style={{ "width": "200px", "height": "800px", "border": "1px solid black" }}>Chat
-                <div>{chat.error ? chat.error : chat.map((chatItems, i) => {
-                    return <p key={i}>From {chatItems.fromUserId}: {chatItems.content}</p>
-                })}</div>
-            </div>
-        )
-    }
-    else {
-        //if false
-        return (
-            <div style={{ "width": "200px", "height": "800px", "border": "1px solid black" }}>Chat - loading</div>
-        )
-    }
+    if(socket){ console.log(socket)}
+    return (
+        <div>
+            {socket ? (
+                <div className="chat-container">
+                    <Messages socket={socket} />
+                    <MessageInput socket={socket} />
+                </div>
+            ) : (
+                <div>Not Connected</div>
+            )}
+        </div>
+    );
 }
-export default Chat

@@ -1,5 +1,5 @@
 //import useState hook to create menu collapse state
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import img from '../img/kackle.png'
 
 //import react pro sidebar components
@@ -13,26 +13,48 @@ import {
 } from "react-pro-sidebar";
 
 //import icons from react icons
-import { FaRegHeart } from "react-icons/fa";
 import {
     FiHome,
+    FiLogIn,
     FiLogOut,
-    FiTrendingUp
 } from "react-icons/fi";
-import { BiCog, BiChat } from "react-icons/bi";
+import { BiChat } from "react-icons/bi";
 import { CgProfile } from "react-icons/cg"
 
 //import sidebar css from react-pro-sidebar module and our custom css
 import "react-pro-sidebar/dist/css/styles.css";
 import "./SideNav.css";
 import { Link } from "react-router-dom";
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { setUserLoggedOut } from "../redux/reducers/userReducer";
 
 
 const SideNav = () => {
-    //getting a user if it exists
-    const user = useSelector(state => state.user.user)
+    const dispatch = useDispatch()
+    //state for active menu item
+    const [isActive, setIsActive] = useState('home')
+    // state for user
+    const userRedux = useSelector(state => state.user.user)
+    const [userState, setUserState] = useState(userRedux)
+
+    if(userRedux){console.log(userRedux.facebookAuth.profile.displayname)}
+    // checking for window location and user to render sidebar menu items
+    useEffect(() => {
+        if(window.location.pathname === "/home"){
+            setIsActive("home")
+        }
+        if(window.location.pathname === "/"){
+            setIsActive("landing")
+        }
+        setUserState(userRedux)
+        if(userRedux){console.log(userRedux.facebookAuth.profile.displayName)}
+    },[isActive, userRedux])
+
+    
+    //logout function for logout button on bottom of
     const userLogout = () => {
+        setIsActive("")
+        dispatch(setUserLoggedOut)
         fetch('/auth/logout', {
             method: 'POST'
         })
@@ -57,7 +79,7 @@ const SideNav = () => {
                     <SidebarHeader>
                         <div className="logotext">
                             {/* small and big change using menucollapse state */}
-                            <img src={img} /> 
+                            <img src={img} alt="kackle logo, a chat bubble with a heart in it"/> 
                         </div>
                         <div className="closemenu" onClick={menuIconClick}>
                             {/* changing menu collapse icon on click */}
@@ -65,18 +87,21 @@ const SideNav = () => {
                         </div>
                     </SidebarHeader>
                     <SidebarContent>
-                        <Menu iconShape="square">
-                            <MenuItem icon={<FiHome />}><Link to="/"></Link>Home</MenuItem>
-                            <MenuItem icon={<FiTrendingUp />}>Trending</MenuItem>
-                            <MenuItem icon={<FaRegHeart />}>Liked</MenuItem>
-                            <MenuItem icon={<BiChat />}><Link to='/Socials'></Link>Socials</MenuItem>
-                            <MenuItem icon={<CgProfile />}><Link to='/UserProfile'></Link>Profile</MenuItem>
-                            <MenuItem icon={<BiCog />}>Settings</MenuItem>
+                        {userState && (
+                            <Menu iconShape="square">
+                            <MenuItem active={isActive === "home"} onClick={() => setIsActive("home")} icon={<FiHome />}><Link to="/"></Link>Home</MenuItem>
+                            <MenuItem active={isActive === "socials"} onClick={() => setIsActive("socials")} icon={<BiChat />}><Link to='/Socials'></Link>Socials</MenuItem>
+                            <MenuItem active={isActive === "profile"} onClick={() => setIsActive("profile")} icon={<CgProfile />}><Link to='/UserProfile'></Link>Profile</MenuItem>
                         </Menu>
+                        )}
                     </SidebarContent>
                     <SidebarFooter>
                         <Menu iconShape="square">
-                            <MenuItem icon={<FiLogOut />} onClick={userLogout}><Link to='/Landing'></Link>Logout</MenuItem>
+                            {userState? (
+                                <MenuItem icon={<FiLogOut />} onClick={userLogout}><Link to='/'></Link>Logout</MenuItem>
+                            ) : (
+                                <MenuItem active={isActive === "login"} onClick={() => setIsActive("login")} icon={<FiLogIn />} ><Link to='/Login'></Link>Login</MenuItem>
+                            )}
                         </Menu>
                     </SidebarFooter>
                 </ProSidebar>

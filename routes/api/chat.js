@@ -6,7 +6,13 @@ const { Op } = require("sequelize");
 
 // POST /users/register
 router.post('/sendMessage', function (req, res, next) {
-    // TODO: check for required fields
+    // check for required fields
+    if (!req.user) {
+        res.status(400).json({ 
+            error: "Must be logged in to send chat messages" 
+        })
+        return
+    }
     if (!req.body.fromUserId || !req.body.toUserId || !req.body.content) {
         res.status(400).json({
             error: 'please include all required fields (fromUser, toUser, content)'
@@ -14,14 +20,13 @@ router.post('/sendMessage', function (req, res, next) {
         return
     }
     db.Chat.create({
-        //session id instead req.body
-        fromUserId: req.body.fromUserId,
+        fromUserId: req.user.id,
         toUserId: req.body.toUserId,
         content: req.body.content,
         isRead: false,
     })
         .then(conversation => {
-            res.status(202).json(conversation)
+            res.status(200).json(conversation)
         })
 
 });
@@ -29,7 +34,9 @@ router.post('/sendMessage', function (req, res, next) {
 router.get('/getMessages/all', async function (req, res, next) {
     // getting all chat messages
     if (!req.user) {
-        res.status(400).json({ error: 'must be logged in to get messages' })
+        res.status(400).json({ 
+            error: 'Must be logged in to get messages' 
+        })
         return
     }
     const loggedInUser = req.user.id
@@ -44,6 +51,16 @@ router.get('/getMessages/all', async function (req, res, next) {
                 }
             ]
         },
+        include: [{
+            model: db.User,
+            as: 'ToUser',
+            attributes: ['id', 'username']
+        },
+        {
+            model: db.User,
+            as: 'FromUser',
+            attributes: ['id', 'username']
+        }]
     })
     res.status(200).json(messages)
 })

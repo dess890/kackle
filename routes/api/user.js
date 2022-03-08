@@ -1,10 +1,12 @@
 const express = require('express');
-const db = require('../../models');
 const router = express.Router();
-const bcrypt = require('bcrypt')
 
 router.get('/current', (req, res) => {
-    res.json(req.user)
+    if(!req.user){
+        res.status(200).json({user: null})
+        return
+    }
+    res.status(200).json(req.user)
 })
 
 module.exports = router;
