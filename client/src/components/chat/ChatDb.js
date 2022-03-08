@@ -13,6 +13,9 @@ function ChatDb() {
     //WE NEED PARTICIPANT USER ID
     const TO_USER_ID = 5;
     
+    const handleParticipantClick = (userId) => {
+        console.log("chat click, userid: ", userId)
+    }
     const handleSubmit = (e) => {
         e.preventDefault()
         //get value from state - chat message to send to db

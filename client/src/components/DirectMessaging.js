@@ -1,10 +1,52 @@
 import React, { useState } from 'react'
 import styles from '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
 import chatcss from '../chatcss/chat.css'
-import { MainContainer, Search, Sidebar, ChatContainer, Conversation, ConversationHeader, ConversationList, EllipsisButton, Message, MessageInput, MessageList, MessageSeparator, TypingIndicator, VideoCallButton, VoiceCallButton } from '@chatscope/chat-ui-kit-react'
+import { MainContainer, Search, Sidebar, ChatContainer, Conversation, ConversationHeader, ConversationList, Message, MessageInput, MessageList, MessageSeparator, SendButton,} from '@chatscope/chat-ui-kit-react'
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchMessages } from '../redux/reducers/chatReducer';
 
 function DirectMessaging() {
     const [messageInputValue, setMessageInputValue] = useState("");
+    const [convoHeaderUsername, setConvoHeaderUsername] = useState("")
+    const [convoHeaderInfo, setConvoHeaderInfo] = useState("")
+    const [activeConvoUserId, setActiveConvoUserId] = useState(null)
+
+    const messages = useSelector(state => state.chat.chat)
+    const user = useSelector(state => state.user.user)
+    const dispatch = useDispatch()
+    if(!messages){dispatch(fetchMessages)}
+
+    function handleParticipantClick(userId, username) {
+        // setting the actively selected conversation, both for style and displaying the messages between user
+        setActiveConvoUserId(userId)
+        // the displayed name in the message header
+        setConvoHeaderUsername(username)
+    }
+    
+    const handleSubmit = () => {
+        setMessageInputValue('')
+        fetch('/chat/api/sendMessage', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                fromUserId: user.id,
+                toUserId: activeConvoUserId,
+                content: messageInputValue,
+            })
+        })
+            .then(result => result.json())
+            .then(message => {
+                // this is kinda dirty but it works to re-render the page
+                dispatch(fetchMessages)
+                //DO SOMETHING WITH SUCCESS MESSAGE
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
+
     return (
         <div style={{
             height: "600px",
@@ -14,134 +56,73 @@ function DirectMessaging() {
                 <Sidebar position="left" scrollable={false}>
                     <Search placeholder="Search..." />
                     <ConversationList>
-                        <Conversation name="Lilly" lastSenderName="Lilly" info="Yes i can do it for you">
-                        </Conversation>
+                        {messages && messages.map((message) => {
+                            return (
+                                activeConvoUserId === message.user.id? (
+                                <Conversation
+                                    key={message.user.id}
+                                    name={message.user.username}
+                                    info={`UserId: ${message.user.id}, remove this later`}
+                                    onClick={() => handleParticipantClick(message.user.id, message.user.username)}
+                                    active
+                                >
+                                </Conversation>
+                                ) : (
+                                    <Conversation
+                                    key={message.user.id}
+                                    name={message.user.username}
+                                    info={`UserId: ${message.user.id}, remove this later`}
+                                    onClick={() => handleParticipantClick(message.user.id, message.user.username)}
+                                >
+                                </Conversation>
+                                )
+                                
+                            )
+                        })}
 
-                        <Conversation name="Joe" lastSenderName="Joe" info="Yes i can do it for you">
-                        </Conversation>
-
-                        <Conversation name="Emily" lastSenderName="Emily" info="Yes i can do it for you" unreadCnt={3}>
-                        </Conversation>
-
-                        <Conversation name="Kai" lastSenderName="Kai" info="Yes i can do it for you" unreadDot>
-                        </Conversation>
-
-                        <Conversation name="Akane" lastSenderName="Akane" info="Yes i can do it for you">
-                        </Conversation>
-
-                        <Conversation name="Eliot" lastSenderName="Eliot" info="Yes i can do it for you">
-                        </Conversation>
-
-                        <Conversation name="Zoe" lastSenderName="Zoe" info="Yes i can do it for you">
-                        </Conversation>
-
-                        <Conversation name="Patrik" lastSenderName="Patrik" info="Yes i can do it for you">
-                        </Conversation>
                     </ConversationList>
                 </Sidebar>
 
                 <ChatContainer>
                     <ConversationHeader>
                         <ConversationHeader.Back />
-                        <ConversationHeader.Content userName="Zoe" info="Active 10 mins ago" />
-                        <ConversationHeader.Actions>
-                            <VoiceCallButton />
-                            <VideoCallButton />
-                            <EllipsisButton orientation="vertical" />
-                        </ConversationHeader.Actions>
+                        <ConversationHeader.Content userName={convoHeaderUsername} info={convoHeaderInfo} />
                     </ConversationHeader>
-                    <MessageList typingIndicator={<TypingIndicator content="Zoe is typing" />}>
-                        <MessageSeparator content="Saturday, 30 November 2019" />
-                        <Message model={{
-                            message: "Hello my friend",
-                            sentTime: "15 mins ago",
-                            sender: "Zoe",
-                            direction: "incoming",
-                            position: "single"
-                        }}>
-                        </Message>
-                        <Message model={{
-                            message: "Hello my friend",
-                            sentTime: "15 mins ago",
-                            sender: "Patrik",
-                            direction: "outgoing",
-                            position: "single"
-                        }} avatarSpacer />
-                        <Message model={{
-                            message: "Hello my friend",
-                            sentTime: "15 mins ago",
-                            sender: "Zoe",
-                            direction: "incoming",
-                            position: "first"
-                        }} avatarSpacer />
-                        <Message model={{
-                            message: "Hello my friend",
-                            sentTime: "15 mins ago",
-                            sender: "Zoe",
-                            direction: "incoming",
-                            position: "normal"
-                        }} avatarSpacer />
-                        <Message model={{
-                            message: "Hello my friend",
-                            sentTime: "15 mins ago",
-                            sender: "Zoe",
-                            direction: "incoming",
-                            position: "normal"
-                        }} avatarSpacer />
-                        <Message model={{
-                            message: "Hello my friend",
-                            sentTime: "15 mins ago",
-                            sender: "Zoe",
-                            direction: "incoming",
-                            position: "last"
-                        }}>
-                        </Message>
-                        <Message model={{
-                            message: "Hello my friend",
-                            sentTime: "15 mins ago",
-                            sender: "Patrik",
-                            direction: "outgoing",
-                            position: "first"
-                        }} />
-                        <Message model={{
-                            message: "Hello my friend",
-                            sentTime: "15 mins ago",
-                            sender: "Patrik",
-                            direction: "outgoing",
-                            position: "normal"
-                        }} />
-                        <Message model={{
-                            message: "Hello my friend",
-                            sentTime: "15 mins ago",
-                            sender: "Patrik",
-                            direction: "outgoing",
-                            position: "normal"
-                        }} />
-                        <Message model={{
-                            message: "Hello my friend",
-                            sentTime: "15 mins ago",
-                            sender: "Patrik",
-                            direction: "outgoing",
-                            position: "last"
-                        }} />
-
-                        <Message model={{
-                            message: "Hello my friend",
-                            sentTime: "15 mins ago",
-                            sender: "Zoe",
-                            direction: "incoming",
-                            position: "first"
-                        }} avatarSpacer />
-                        <Message model={{
-                            message: "Hello my friend",
-                            sentTime: "15 mins ago",
-                            sender: "Zoe",
-                            direction: "incoming",
-                            position: "last"
-                        }}>
-                        </Message>
+                    <MessageList>
+                        <MessageSeparator content="MAYBE A GOOD IDEA TO PUT DATE HERE" />
+                        {activeConvoUserId && messages
+                            .filter((convo)=> convo.user.id === activeConvoUserId)[0].conversation
+                            .map((message) => {
+                                return (
+                                    message.FromUser.id === user.id ? (
+                                        <Message key={message.id} model={{
+                                            message: message.content,
+                                            direction: "outgoing",
+                                            position: "normal"
+                                        }}>
+                                        </Message>
+                                    ) : (
+                                        <Message key={message.id} model={{
+                                            message: message.content,
+                                            direction: "incoming",
+                                            position: "normal"
+                                        }}>
+                                        </Message>
+                                    )
+                                )
+                            })
+                        }     
                     </MessageList>
-                    <MessageInput placeholder="Type message here" />
+                    {activeConvoUserId != null? (
+                        <MessageInput 
+                        onSend={handleSubmit} 
+                        placeholder="Type message here" 
+                        value={messageInputValue} 
+                        onChange={msg => setMessageInputValue(msg)}
+                        attachButton={false}/>
+                    ) : (
+                        <></>
+                    )}
                 </ChatContainer>
             </MainContainer>
         </div >

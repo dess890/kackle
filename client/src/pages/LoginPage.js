@@ -1,8 +1,5 @@
 import React from 'react'
 import Login from '../components/Login'
-import LoginButton from '../components/LoginButton'
-import SideNav from '../components/SideNav'
-import img from '../img/kacklelogo.png'
 
 function LoginPage() {
     return (
