@@ -15,7 +15,6 @@ export default function StaticDiv1() {
 
         <HStack h='40px' divider={<StackDivider border='none' />} spacing={10}>
           <Text fontWeight='bold' fontSize='lg' as='a' href='https://deadline.com/2022/03/hbo-max-orders-the-penguin-limited-series-as-the-batman-clocks-301m-at-ww-box-office-1234974516/'>'The Batman' Clocks $301M+ At WW Box Office, HBO picks up spin-off series.</Text>
-          {/* <img className='map' src={batman} alt="Batman " /> */}
         </HStack>
 
         <HStack spacing={10}>
