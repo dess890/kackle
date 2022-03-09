@@ -8,7 +8,7 @@
 #### 2: Connect your Twitter and/or Facebook account
 #### 3: Browse both of your social media feeds at the same time on the homepage!
 
-# add screenshot
+![Kackle-screenshot](https://user-images.githubusercontent.com/78816489/157549246-8bcc9336-b4d6-4d0c-88e4-69adddd2d408.jpg)
 
 ## Technologies
 #### **Front End**:  
@@ -16,6 +16,7 @@
 - Chakra UI  
 - SCSS  
 - HTML
+
 
 #### **Back End**:
 - Node.js/Express  
