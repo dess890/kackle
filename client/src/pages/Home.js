@@ -5,6 +5,7 @@ import StaticDiv2 from "../components/StaticDiv2";
 import ScrollDivTwo from '../components/ScrollDivTwo';
 import { ButtonGroup, Container, IconButton, HStack, Stack, Text } from '@chakra-ui/react'
 import { FaGithub, FaTwitter } from 'react-icons/fa'
+import { useSelector } from 'react-redux';
 
 
 function Home() {

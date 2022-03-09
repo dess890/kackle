@@ -12,13 +12,9 @@ function FbPosts() {
     const userRedux = useSelector(state => state.user.user)
     let userDisplayName = userRedux.username
 
-    if(userRedux !== null && userRedux.facebookId !== null){
+    if (userRedux !== null && userRedux.facebookId !== null) {
         userDisplayName = userRedux.facebookAuth.profile.displayName
     }
-    
-    
-
-
 
     useEffect(() => {
         fetch('/facebook/api/feed')
@@ -56,7 +52,7 @@ function FbPosts() {
                     return <div key={post.id}>
                         <HStack>
                             <img src={pics} style={{ borderRadius: '50%' }}></img>
-                            {/* <Text>{userDisplayName}</Text> */}
+                            <Text>{userDisplayName}</Text>
                             <Text fontSize='sm'>{moment(`${post.created_time}`).fromNow()}</Text>
                         </HStack>
                         <VStack>
