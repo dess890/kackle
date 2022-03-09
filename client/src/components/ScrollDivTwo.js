@@ -9,7 +9,7 @@ function ScrollDivTwo() {
     const userRedux = useSelector(state => state.user.user)
     const host = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : ''
 
-    if(userRedux.facebookId !== null) {
+    if(userRedux !== null && userRedux.facebookId !== null) {
         return (
             <div className="scroll">
                 <BsFacebook />
