@@ -51,12 +51,12 @@ function GridForProfile() {
                                         <ButtonGroup variant="ghost">
                                             <IconButton
                                                 as="a"
-                                                href="https://github.com/dess890/kackle"
+                                                href="https://www.facebook.com/desirreeadegunle"
                                                 aria-label="Facebook"
                                                 icon={<FaFacebook fontSize="1.25rem" color='black' />} />
                                             <IconButton
                                                 as="a"
-                                                href="#"
+                                                href="twitter.com/dess_html"
                                                 aria-label="Twitter"
                                                 icon={<FaTwitter fontSize="1.25rem" color='black' />}
                                             />
