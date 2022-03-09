@@ -18,12 +18,11 @@ export function setUserLoggedOut(dispatch, getState) {
 }
 
 export function fetchCurrentUser(dispatch, getState) {
+    console.log("FETCHING CURRENT USER")
     fetch('/users/api/current')
-        .then(res => {
-            res.json()
-        })
+        .then(res => res.json())
         .then(data => {
-            if(data === undefined){
+            if(data?.error){
                 dispatch(setCurrentUser(null))
                 return
             }
