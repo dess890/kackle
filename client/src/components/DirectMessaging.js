@@ -85,7 +85,6 @@ function DirectMessaging() {
 
                 <ChatContainer>
                     <ConversationHeader>
-                        <ConversationHeader.Back />
                         <ConversationHeader.Content userName={convoHeaderUsername} info={convoHeaderInfo} />
                     </ConversationHeader>
                     <MessageList>
