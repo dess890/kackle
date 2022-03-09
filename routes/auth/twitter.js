@@ -31,7 +31,7 @@ passport.use(new TwitterStrategy({
 router.get('/', passport.authenticate('twitter'))
 router.get('/callback', passport.authenticate('twitter', { failureRedirect: '/auth/error' }),
     function (req, res) {
-        res.redirect('/');
+        res.redirect(process.env.CALLBACK_CLIENT_URL || '/home');
     });
 
 module.exports = router

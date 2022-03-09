@@ -14,10 +14,10 @@ passport.deserializeUser(function (userId, done) {
         .then(user => {
             done(null, user);
         })
-
 });
 
 router.post('/logout', function (req, res, next) {
+    
     req.logout();
     res.redirect('/');
 });

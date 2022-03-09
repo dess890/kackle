@@ -5,7 +5,9 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www",
-    "db:reset": "npx sequelize db:drop ; npx sequelize db:create && npx sequelize db:migrate && npx sequelize db:seed:all"
+    "db:reset": "npx sequelize db:drop ; npx sequelize db:create && npx sequelize db:migrate && npx sequelize db:seed:all",
+    "postinstall": "cd client && npm i && npm run build"
+
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
