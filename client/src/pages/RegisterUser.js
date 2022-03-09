@@ -4,7 +4,7 @@ import Register from '../components/Register'
 function RegisterUser() {
     return (
         <div>
-            <div style={{width: "60%"}}>
+            <div style={{width: "60%", marginLeft: "auto"}}>
                 <Register />
             </div>
         </div>

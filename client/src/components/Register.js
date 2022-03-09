@@ -100,7 +100,7 @@ export default function Register() {
                         <FormErrorMessage>Password is required.</FormErrorMessage>
                     )}
                 </FormControl>
-                <Button type="submit" isLoading={loading} loadingText="Submitting" colorScheme='teal'>Register!</Button>
+                <Button type="submit" isLoading={loading} loadingText="Submitting" colorScheme='orange'>Register!</Button>
             </form>
         )
     }
