@@ -56,7 +56,7 @@ function FbPosts() {
                     return <div key={post.id}>
                         <HStack>
                             <img src={pics} style={{ borderRadius: '50%' }}></img>
-                            <Text>{userDisplayName}</Text>
+                            {/* <Text>{userDisplayName}</Text> */}
                             <Text fontSize='sm'>{moment(`${post.created_time}`).fromNow()}</Text>
                         </HStack>
                         <VStack>

@@ -23,8 +23,8 @@
   width: 100vw;
   display: flex;
   flex-direction: row;
-  padding: 1rem;
-  margin: 1rem;
+  padding-left: 1rem;
+  /* margin-left: 1rem; */
   overflow-x: hidden;
 }
 
