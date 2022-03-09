@@ -1,7 +1,6 @@
 import "./ScrollDiv.css";
 import { BsTwitter } from "react-icons/bs";
 import TwitterFeed from "../pages/TwitterFeed";
-import FbPosts from "./FbPosts";
 import { useSelector } from "react-redux";
 import { Button } from "@chakra-ui/react";
 
@@ -9,7 +8,7 @@ export default function ScrollDiv() {
   const userRedux = useSelector(state => state.user.user)
   const host = process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : ''
 
-  if(userRedux.twitterId !== null){
+  if(userRedux !== null && userRedux.facebookId !== null){
   return (
     <div className="scroll">
       <BsTwitter />
