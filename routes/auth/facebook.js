@@ -35,7 +35,7 @@ router.get('/', passport.authenticate('facebook', {
 router.get('/callback',
     passport.authenticate('facebook', { failureRedirect: '/auth/error', failureMessage: true }),
     function (req, res) {
-        res.redirect('/');
+        res.redirect(process.env.CALLBACK_CLIENT_URL || '/home');
     });
 
 

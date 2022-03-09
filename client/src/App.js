@@ -32,7 +32,6 @@ export default function App() {
       </div>
       <div>
         <Routes >
-          {}
           <Route path="/home" element={<Home />} />
           <Route path="/test" element={<Test />} />
           <Route path="/Login" element={<LoginPage />} />

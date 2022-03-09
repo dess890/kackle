@@ -7,6 +7,7 @@ import { FaGithub, FaTwitter } from 'react-icons/fa'
 
 
 function Home() {
+
   return (
     <>
       <div className="container">
