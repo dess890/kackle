@@ -63,7 +63,6 @@ function TwitterFeed() {
             })}
         </div>
     )
-
 }
 
 export default TwitterFeed

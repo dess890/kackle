@@ -25,7 +25,7 @@ export default function App() {
 
   return (
     <div className="App">
-      <img src={img} style={{ paddingLeft: '45%', marginBottom: '0%' }} />
+      <img src={img} alt='logo' style={{ paddingLeft: '45%', marginBottom: '0%' }} />
       {/* <Chat /> */}
       <div>
         <SideNav />

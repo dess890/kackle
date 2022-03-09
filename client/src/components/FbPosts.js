@@ -9,7 +9,7 @@ function FbPosts() {
     const [posts, setPosts] = useState([])
     const [error, setError] = useState(false)
     const [pics, setPics] = useState('')
-    const userDisplayName = useSelector(state => state.user.user.facebookAuth.profile.displayName)
+    // const userDisplayName = useSelector(state => state.user.user.facebookAuth.profile.displayName)
 
 
 
@@ -51,7 +51,7 @@ function FbPosts() {
                     return <div key={post.id}>
                         <HStack>
                             <img src={pics} style={{ borderRadius: '50%' }}></img>
-                            <Text>{userDisplayName}</Text>
+                            {/* <Text>{userDisplayName}</Text> */}
                             <Text fontSize='sm'>{moment(`${post.created_time}`).fromNow()}</Text>
                         </HStack>
                         <VStack>

@@ -37,7 +37,6 @@ const SideNav = () => {
     const userRedux = useSelector(state => state.user.user)
     const [userState, setUserState] = useState(userRedux)
 
-    if(userRedux){console.log(userRedux.facebookAuth.profile.displayname)}
     // checking for window location and user to render sidebar menu items
     useEffect(() => {
         if(window.location.pathname === "/home"){
@@ -47,7 +46,6 @@ const SideNav = () => {
             setIsActive("landing")
         }
         setUserState(userRedux)
-        if(userRedux){console.log(userRedux.facebookAuth.profile.displayName)}
     },[isActive, userRedux])
 
     
@@ -68,7 +66,7 @@ const SideNav = () => {
         //condition checking to change state from true to false and vice versa
         menuCollapse ? setMenuCollapse(false) : setMenuCollapse(true);
     };
-
+if (userRedux !== null) {
     return (
         <>
             <div id="header">
@@ -89,7 +87,7 @@ const SideNav = () => {
                     <SidebarContent>
                         {userState && (
                             <Menu iconShape="square">
-                            <MenuItem active={isActive === "home"} onClick={() => setIsActive("home")} icon={<FiHome />}><Link to="/"></Link>Home</MenuItem>
+                            <MenuItem active={isActive === "home"} onClick={() => setIsActive("home")} icon={<FiHome />}><Link to="/home"></Link>Home</MenuItem>
                             <MenuItem active={isActive === "socials"} onClick={() => setIsActive("socials")} icon={<BiChat />}><Link to='/Socials'></Link>Socials</MenuItem>
                             <MenuItem active={isActive === "profile"} onClick={() => setIsActive("profile")} icon={<CgProfile />}><Link to='/UserProfile'></Link>Profile</MenuItem>
                         </Menu>
@@ -108,6 +106,10 @@ const SideNav = () => {
             </div>
         </>
     );
+                            }
+                            return (
+                                <></>
+                            )
 };
 
 export default SideNav;

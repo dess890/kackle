@@ -1,6 +1,7 @@
 import React from 'react'
 import ScrollDiv from "../components/ScrollDiv";
 import StaticDiv from "../components/StaticDiv";
+import StaticDiv2 from "../components/StaticDiv2";
 import ScrollDivTwo from '../components/ScrollDivTwo';
 import { ButtonGroup, Container, IconButton, HStack, Stack, Text } from '@chakra-ui/react'
 import { FaGithub, FaTwitter } from 'react-icons/fa'
@@ -16,7 +17,7 @@ function Home() {
         </div>
         <div className="row2">
           <ScrollDivTwo />
-          <StaticDiv />
+          <StaticDiv2 />
         </div>
       </div>
 
