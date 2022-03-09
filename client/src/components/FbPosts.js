@@ -9,9 +9,12 @@ function FbPosts() {
     const [posts, setPosts] = useState([])
     const [error, setError] = useState(false)
     const [pics, setPics] = useState('')
-    const userDisplayName = useSelector(state => state.user.user.facebookAuth.profile.displayName)
+    const userRedux = useSelector(state => state.user.user)
+    let userDisplayName = "Not signed in"
 
-
+    if (userRedux !== null && userRedux.facebookId !== null) {
+        userDisplayName = userRedux.facebookAuth.profile.displayName
+    }
 
     useEffect(() => {
         fetch('/facebook/api/feed')
