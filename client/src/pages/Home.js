@@ -4,9 +4,15 @@ import StaticDiv from "../components/StaticDiv";
 import ScrollDivTwo from '../components/ScrollDivTwo';
 import { ButtonGroup, Container, IconButton, HStack, Stack, Text } from '@chakra-ui/react'
 import { FaGithub, FaTwitter } from 'react-icons/fa'
+import { useSelector } from 'react-redux';
 
 
 function Home() {
+  const user = useSelector(state => state.user.user)
+  if (!user) {
+    return null
+  }
+
   return (
     <>
       <div className="container">
